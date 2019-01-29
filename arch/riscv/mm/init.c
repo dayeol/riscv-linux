@@ -18,6 +18,7 @@
 #include <linux/memblock.h>
 #include <linux/swap.h>
 #include <linux/sizes.h>
+#include <linux/dma-contiguous.h>
 
 #include <asm/tlbflush.h>
 #include <asm/sections.h>
@@ -44,6 +45,7 @@ void __init paging_init(void)
 	setup_zero_page();
 	local_flush_tlb_all();
 	zone_sizes_init();
+  dma_contiguous_reserve(memblock_end_of_DRAM());
 }
 
 void __init mem_init(void)
